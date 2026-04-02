@@ -1,0 +1,379 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.phone-wrap { background: var(--color-background-secondary); border-radius: 20px; padding: 14px; max-width: 390px; margin: 0 auto; }
+.phone { background: #fff; border-radius: 14px; overflow: hidden; border: 0.5px solid var(--color-border-tertiary); font-family: var(--font-sans); }
+
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); background: #fff; }
+.topbar-back { font-size: 18px; color: #222; line-height: 1; }
+.topbar-title { font-size: 14px; font-weight: 500; color: #111; }
+.topbar-cart { position: relative; }
+.topbar-cart svg { width: 20px; height: 20px; }
+.cart-dot { position: absolute; top: -3px; right: -3px; width: 8px; height: 8px; background: #e53; border-radius: 50%; }
+
+.hero { position: relative; background: #fff8f0; overflow: hidden; }
+.hero-img { width: 100%; height: 200px; object-fit: cover; display: block; background: #fce8d5; display: flex; align-items: flex-end; }
+.hero-inner { padding: 0; position: relative; }
+.hero-editorial { position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 18px 16px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%); }
+.hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; color: #ffe4b5; text-transform: uppercase; margin-bottom: 4px; }
+.hero-headline { font-size: 26px; font-weight: 500; color: #fff; line-height: 1.15; }
+.hero-headline em { font-style: italic; }
+.hero-tagline { font-size: 12px; color: rgba(255,255,255,0.82); margin-top: 6px; line-height: 1.5; }
+.hero-bg { width: 100%; height: 200px; background: #f5dcc0; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.hero-sun { width: 120px; height: 120px; border-radius: 50%; background: #f7b955; opacity: 0.35; position: absolute; top: -20px; right: -20px; }
+.hero-sun2 { width: 70px; height: 70px; border-radius: 50%; background: #f7b955; opacity: 0.2; position: absolute; bottom: 10px; left: 30px; }
+
+.steps-wrap { background: #fff; }
+
+.step-block { border-bottom: 6px solid #f5f4f0; }
+.step-block:last-child { border-bottom: none; }
+
+.step-header { padding: 16px 16px 10px; }
+.step-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.step-pill { display: flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 500; }
+.step-pill.s1 { background: #fff3e0; color: #b45309; }
+.step-pill.s2 { background: #e1f5ee; color: #085041; }
+.step-pill.s3 { background: #fce4ec; color: #880e4f; }
+.step-pill.s4 { background: #e3f2fd; color: #0d47a1; }
+.step-pill.s5 { background: #f3e5f5; color: #4a148c; }
+.step-clock { font-size: 10px; color: #888; display: flex; align-items: center; gap: 3px; }
+.step-name { font-size: 17px; font-weight: 500; color: #111; margin-bottom: 4px; }
+.step-desc { font-size: 12px; color: #666; line-height: 1.55; }
+
+.product-shelf { display: flex; gap: 10px; padding: 10px 16px 18px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.product-shelf::-webkit-scrollbar { display: none; }
+
+.p-card { flex-shrink: 0; width: 140px; background: #fff; border: 0.5px solid #e5e5e0; border-radius: 12px; overflow: hidden; }
+.p-img-wrap { background: #f7f6f2; height: 120px; display: flex; align-items: center; justify-content: center; position: relative; }
+.p-img-wrap svg { width: 44px; height: 44px; color: #ccc; }
+.p-badge { position: absolute; top: 6px; left: 6px; font-size: 8px; font-weight: 500; padding: 2px 6px; border-radius: 3px; }
+.badge-new { background: #1D9E75; color: #fff; }
+.badge-best { background: #f59e0b; color: #fff; }
+.badge-b1g1 { background: #fff; color: #1D9E75; border: 0.5px solid #1D9E75; }
+.p-body { padding: 8px 9px 10px; }
+.p-brand { font-size: 9px; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+.p-name { font-size: 11px; font-weight: 500; color: #111; line-height: 1.4; margin-bottom: 5px; min-height: 30px; }
+.p-price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 7px; }
+.p-price { font-size: 12px; font-weight: 500; color: #111; }
+.p-mrp { font-size: 10px; color: #aaa; text-decoration: line-through; }
+.p-off { font-size: 10px; color: #1D9E75; font-weight: 500; }
+.p-atc { width: 100%; padding: 7px; border-radius: 7px; border: 0.5px solid #ddd; background: #fff; font-size: 11px; color: #111; cursor: pointer; font-weight: 500; transition: all 0.15s; }
+.p-atc:hover { background: #f5f5f0; }
+.p-atc.added { background: #e1f5ee; border-color: #5DCAA5; color: #085041; }
+
+.fab-bar { position: sticky; bottom: 0; background: #fff; border-top: 0.5px solid #e5e5e0; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
+.fab-cart-info { flex: 1; }
+.fab-cart-count { font-size: 12px; font-weight: 500; color: #111; }
+.fab-cart-save { font-size: 11px; color: #1D9E75; margin-top: 1px; }
+.fab-cta { background: #1D9E75; color: #fff; border: none; border-radius: 9px; padding: 10px 18px; font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.fab-cta:hover { background: #0F6E56; }
+</style>
+
+<div class="phone-wrap">
+  <div class="phone">
+
+    <div class="topbar">
+      <span class="topbar-back">&#8592;</span>
+      <span class="topbar-title">Summer Must-Haves</span>
+      <div class="topbar-cart">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M3 3h2l.4 2M7 13h10l1.4-7H5.4M7 13L5.4 5M7 13a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z" stroke="#111" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="cart-dot" id="cartDot" style="display:none"></div>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-bg">
+        <div class="hero-sun"></div>
+        <div class="hero-sun2"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px;background:linear-gradient(to top,rgba(180,80,0,0.55) 0%,transparent 65%);">
+          <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;color:#ffe4b5;text-transform:uppercase;margin-bottom:5px;">Editor's cut</div>
+          <div style="font-size:28px;font-weight:500;color:#fff;line-height:1.1;">Summer <em style="font-style:italic;">skin</em><br>essentials</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:6px;line-height:1.5;">Your 5-step AM routine for<br>glow that survives the heat.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps-wrap">
+
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-meta">
+            <div class="step-pill s1">
+              <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="currentColor"/></svg>
+              Step 1
+            </div>
+            <div class="step-clock">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1"/><path d="M5 3v2.5l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+              45 sec
+            </div>
+          </div>
+          <div class="step-name">Cleanse</div>
+          <div class="step-desc">Start fresh. A gentle vitamin C wash preps skin to absorb everything that comes next.</div>
+        </div>
+        <div class="product-shelf">
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#fff8f0;">
+              <div class="p-badge badge-best">Bestseller</div>
+              <svg viewBox="0 0 44 44" fill="none"><rect x="16" y="4" width="12" height="36" rx="4" fill="#f7b955" opacity="0.6"/><rect x="18" y="2" width="8" height="6" rx="2" fill="#e5a040"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Vit C Brightening Gel Face Wash</div>
+              <div class="p-price-row"><span class="p-price">₹295</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#f0f8ff;">
+              <svg viewBox="0 0 44 44" fill="none"><rect x="16" y="4" width="12" height="36" rx="4" fill="#85b7eb" opacity="0.6"/><rect x="18" y="2" width="8" height="6" rx="2" fill="#5a9fd4"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Niacinamide Foaming Face Wash</div>
+              <div class="p-price-row"><span class="p-price">₹275</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-meta">
+            <div class="step-pill s2">
+              <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="currentColor"/></svg>
+              Step 2
+            </div>
+            <div class="step-clock">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1"/><path d="M5 3v2.5l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+              1 min
+            </div>
+          </div>
+          <div class="step-name">Treat</div>
+          <div class="step-desc">Target uneven tone and dullness before the heat gets to it. Apply on damp skin.</div>
+        </div>
+        <div class="product-shelf">
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#fff8e1;">
+              <div class="p-badge badge-best">Bestseller</div>
+              <svg viewBox="0 0 44 44" fill="none"><rect x="19" y="3" width="6" height="38" rx="3" fill="#f59e0b" opacity="0.5"/><circle cx="22" cy="3" r="3" fill="#e08800"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">10% Vit C Face Serum Triple Glow</div>
+              <div class="p-price-row"><span class="p-price">₹595</span><span class="p-mrp">₹699</span><span class="p-off">15%</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#f0fff4;">
+              <svg viewBox="0 0 44 44" fill="none"><rect x="19" y="3" width="6" height="38" rx="3" fill="#1D9E75" opacity="0.4"/><circle cx="22" cy="3" r="3" fill="#0F6E56"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">10% Niacinamide Face Serum</div>
+              <div class="p-price-row"><span class="p-price">₹545</span><span class="p-mrp">₹649</span><span class="p-off">16%</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#fce4ec;">
+              <svg viewBox="0 0 44 44" fill="none"><rect x="19" y="3" width="6" height="38" rx="3" fill="#e91e8c" opacity="0.3"/><circle cx="22" cy="3" r="3" fill="#c2185b"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Hyaluronic Acid + Peptide Serum</div>
+              <div class="p-price-row"><span class="p-price">₹645</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-meta">
+            <div class="step-pill s3">
+              <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="currentColor"/></svg>
+              Step 3
+            </div>
+            <div class="step-clock">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1"/><path d="M5 3v2.5l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+              1 min
+            </div>
+          </div>
+          <div class="step-name">Moisturise</div>
+          <div class="step-desc">Seal your serum and create the perfect base for SPF. Lightweight, non-greasy.</div>
+        </div>
+        <div class="product-shelf">
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#e8f5e9;">
+              <div class="p-badge badge-best">Bestseller</div>
+              <svg viewBox="0 0 44 44" fill="none"><rect x="13" y="8" width="18" height="28" rx="5" fill="#4caf50" opacity="0.3"/><rect x="17" y="5" width="10" height="6" rx="2" fill="#388e3c" opacity="0.5"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Korean Rice Water Hydra Glow Moisturizer</div>
+              <div class="p-price-row"><span class="p-price">₹595</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#e3f2fd;">
+              <svg viewBox="0 0 44 44" fill="none"><rect x="13" y="8" width="18" height="28" rx="5" fill="#2196f3" opacity="0.25"/><rect x="17" y="5" width="10" height="6" rx="2" fill="#1565c0" opacity="0.4"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Red Vine Youthful Glow Moisturizer</div>
+              <div class="p-price-row"><span class="p-price">₹550</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header">
+          <div class="step-meta">
+            <div class="step-pill s4">
+              <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="currentColor"/></svg>
+              Step 4
+            </div>
+            <div class="step-clock">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1"/><path d="M5 3v2.5l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+              30 sec
+            </div>
+          </div>
+          <div class="step-name">Protect</div>
+          <div class="step-desc">The non-negotiable. New Gen UV Filters block UVA, UVB + Blue Light. Last step, always.</div>
+        </div>
+        <div class="product-shelf">
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#e0f7fa;">
+              <div class="p-badge badge-new">New Launch</div>
+              <svg viewBox="0 0 44 44" fill="none"><rect x="15" y="4" width="14" height="36" rx="5" fill="#00bcd4" opacity="0.35"/><rect x="17" y="2" width="10" height="5" rx="2" fill="#0097a7" opacity="0.5"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Vit C Brightening Serum SPF 50+</div>
+              <div class="p-price-row"><span class="p-price">₹495</span><span class="p-badge badge-b1g1" style="font-size:8px;padding:1px 4px;border-radius:3px;background:#e1f5ee;color:#085041;border:0.5px solid #5dcaa5;">B1G1</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#e8f5e9;">
+              <div class="p-badge badge-new">New Launch</div>
+              <svg viewBox="0 0 44 44" fill="none"><rect x="15" y="4" width="14" height="36" rx="5" fill="#1D9E75" opacity="0.3"/><rect x="17" y="2" width="10" height="5" rx="2" fill="#0F6E56" opacity="0.5"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">5% Niacinamide Hydra Glow SPF 50+</div>
+              <div class="p-price-row"><span class="p-price">₹495</span><span style="font-size:8px;padding:1px 4px;border-radius:3px;background:#e1f5ee;color:#085041;border:0.5px solid #5dcaa5;">B1G1</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#fff3e0;">
+              <svg viewBox="0 0 44 44" fill="none"><rect x="15" y="4" width="14" height="36" rx="5" fill="#ff9800" opacity="0.3"/><rect x="17" y="2" width="10" height="5" rx="2" fill="#e65100" opacity="0.4"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Korean Cooling Fluid SPF 50+</div>
+              <div class="p-price-row"><span class="p-price">₹495</span><span style="font-size:8px;padding:1px 4px;border-radius:3px;background:#e1f5ee;color:#085041;border:0.5px solid #5dcaa5;">B1G1</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-block" style="border-bottom:none;">
+        <div class="step-header">
+          <div class="step-meta">
+            <div class="step-pill s5">
+              <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="currentColor"/></svg>
+              Step 5
+            </div>
+            <div class="step-clock">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1"/><path d="M5 3v2.5l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+              1 min
+            </div>
+          </div>
+          <div class="step-name">Lock & set</div>
+          <div class="step-desc">Optional but worth it — a mist keeps glow alive through the longest summer days.</div>
+        </div>
+        <div class="product-shelf">
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#f3e5f5;">
+              <svg viewBox="0 0 44 44" fill="none"><rect x="18" y="4" width="8" height="32" rx="3" fill="#9c27b0" opacity="0.3"/><rect x="20" y="2" width="4" height="5" rx="1" fill="#7b1fa2" opacity="0.5"/><rect x="14" y="14" width="16" height="8" rx="2" fill="#ce93d8" opacity="0.4"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Aloe + Green Tea Hydrating Face Mist</div>
+              <div class="p-price-row"><span class="p-price">₹345</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-img-wrap" style="background:#fff8e1;">
+              <svg viewBox="0 0 44 44" fill="none"><rect x="18" y="4" width="8" height="32" rx="3" fill="#ffc107" opacity="0.35"/><rect x="20" y="2" width="4" height="5" rx="1" fill="#f9a825" opacity="0.5"/><rect x="14" y="14" width="16" height="8" rx="2" fill="#ffe082" opacity="0.5"/></svg>
+            </div>
+            <div class="p-body">
+              <div class="p-brand">Pilgrim</div>
+              <div class="p-name">Vitamin C Glow Toner Mist</div>
+              <div class="p-price-row"><span class="p-price">₹395</span></div>
+              <button class="p-atc" onclick="toggleAdd(this)">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="fab-bar" id="fabBar" style="display:none;">
+      <div class="fab-cart-info">
+        <div class="fab-cart-count" id="cartCount"></div>
+        <div class="fab-cart-save" id="cartSave"></div>
+      </div>
+      <button class="fab-cta">View cart</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const prices = [];
+let cartCount = 0;
+
+function toggleAdd(btn) {
+  const card = btn.closest('.p-card');
+  const priceText = card.querySelector('.p-price').textContent.replace('₹','').replace(',','');
+  const price = parseInt(priceText);
+  if (btn.classList.contains('added')) {
+    btn.classList.remove('added');
+    btn.textContent = '+ Add';
+    cartCount--;
+  } else {
+    btn.classList.add('added');
+    btn.textContent = 'Added ✓';
+    cartCount++;
+  }
+  updateBar();
+}
+
+function updateBar() {
+  const bar = document.getElementById('fabBar');
+  const dot = document.getElementById('cartDot');
+  if (cartCount > 0) {
+    bar.style.display = 'flex';
+    dot.style.display = 'block';
+    document.getElementById('cartCount').textContent = cartCount + ' item' + (cartCount > 1 ? 's' : '') + ' added to cart';
+    document.getElementById('cartSave').textContent = cartCount >= 2 ? 'Add ' + (cartCount >= 2 ? '' : 'more ') + '→ unlock B1G1 free' : 'Add 1 more to unlock B1G1';
+    if (cartCount >= 2) {
+      document.getElementById('cartSave').textContent = 'B1G1 active — lowest item free!';
+    }
+  } else {
+    bar.style.display = 'none';
+    dot.style.display = 'none';
+  }
+}
+</script>
